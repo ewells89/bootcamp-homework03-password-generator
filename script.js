@@ -24,22 +24,6 @@ function generatePassword() {
     // password length
     var passwordLength = prompt("How long would you like your password to be (between 8 and 128 characters)?.");
       console.log(passwordLength);
-    
-    // confirm special characters
-    var specialCharacters = confirm("Would you like your password to contain special characters?");
-      console.log(specialCharacters);
-
-    // confirm numeric
-    var numericValues = confirm("Would you like your password to contain numeric values?");
-      console.log(numericValues);
-
-    // confirm lowercase
-    var lowercase = confirm("Would you like your password to contain lowercase letters?");
-      console.log(lowercase);
-
-    // confirm uppercase
-    var uppercase = confirm("Would you like your password to contain uppercase letters?");
-      console.log(uppercase);
 
     // string for the concatenated values based on the user's inputs
     var passwordString = "";
@@ -47,43 +31,71 @@ function generatePassword() {
   // Function Logic
     if(passwordLength > 8 && passwordLength < 128){
       console.log("the password length is acceptable");
-      if(specialCharacters){
-        for(var i = 0; i < passwordLength; i++){
+
+      // VARIABLES
+
+        // confirm special characters
+          var specialCharacters = confirm("Would you like your password to contain special characters?");
+          console.log(specialCharacters);
+
+        // confirm numeric
+        var numericValues = confirm("Would you like your password to contain numeric values?");
+          console.log(numericValues);
+
+        // confirm lowercase
+        var lowercase = confirm("Would you like your password to contain lowercase letters?");
+          console.log(lowercase);
+
+        // confirm uppercase
+        var uppercase = confirm("Would you like your password to contain uppercase letters?");
+          console.log(uppercase);
+      
+      //LOGIC 
+
+      for(var i = 0; i < passwordLength; i++){
+        if(specialCharacters){
           passwordString = passwordString + getSpecial();
-        }
-        console.log(passwordString);
-      }else{
-      };
+          }else{};
 
+        if(numericValues){
+          passwordString = passwordString + getNumeric();
+        }else{};
 
-      if(numericValues){
+        if(lowercase){
+          passwordString = passwordString + getLower();
+        }else{};
 
-      }else{
-      };
+        if(uppercase){
+          passwordString = passwordString + getUpper();
+        }else{};
 
-
-      if(lowercase){
-
-      }else{
-      };
-
-      if(uppercase){
-
-      }else{
-      };
-
-
+      }
+      console.log(passwordString);
     } else{
       console.log("please specify an accepted password length.");
+      alert("Please specify an accepted password length.");
     };  
 
     return passwordString;
 };
 
-
+// Callback Functions
 function getSpecial(){
   var special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
   return special[Math.floor(Math.random() * special.length)];
-
 };
 
+function getNumeric(){
+  var number = "0123456789";
+  return number[Math.floor(Math.random() * number.length)];
+};
+
+function getLower(){
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  return lower[Math.floor(Math.random() * lower.length)];
+};
+
+function getUpper(){
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  return upper[Math.floor(Math.random() * upper.length)];
+};
