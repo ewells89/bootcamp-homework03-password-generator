@@ -41,12 +41,49 @@ function generatePassword() {
     var uppercase = confirm("Would you like your password to contain uppercase letters?");
       console.log(uppercase);
 
+    // string for the concatenated values based on the user's inputs
+    var passwordString = "";
+
   // Function Logic
     if(passwordLength > 8 && passwordLength < 128){
       console.log("the password length is acceptable");
+      if(specialCharacters){
+        for(var i = 0; i < passwordLength; i++){
+          passwordString = passwordString + getSpecial();
+        }
+        console.log(passwordString);
+      }else{
+      };
+
+
+      if(numericValues){
+
+      }else{
+      };
+
+
+      if(lowercase){
+
+      }else{
+      };
+
+      if(uppercase){
+
+      }else{
+      };
+
 
     } else{
       console.log("please specify an accepted password length.");
     };  
 
+    return passwordString;
 };
+
+
+function getSpecial(){
+  var special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+  return special[Math.floor(Math.random() * special.length)];
+
+};
+
