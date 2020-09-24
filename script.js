@@ -10,14 +10,11 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
+// Returns the value of the generated password when clicked. 
 generateBtn.addEventListener("click", writePassword);
 
 
-// Write a function called generatePassword.  everything else is done. don't worry about DOM manipulation.  it has to return a value--a string for the password.
-
 function generatePassword() {
-  // return "A string for a password.";
  
   // Variable Declarations
 
@@ -51,11 +48,11 @@ function generatePassword() {
           console.log(uppercase);
       
       //LOGIC 
-
+      // returns the mix of character types based on the user's selection above.
       for(var i = 0; i < passwordLength; i++){
         if(specialCharacters){
           passwordString = passwordString + getSpecial();
-          }else{};
+        }else{};
 
         if(numericValues){
           passwordString = passwordString + getNumeric();
@@ -72,29 +69,32 @@ function generatePassword() {
       }
       console.log(passwordString);
     } else{
-      console.log("please specify an accepted password length.");
-      alert("Please specify an accepted password length.");
+      alert("Please specify a valid password length.");
     };  
 
-    return passwordString;
+    return passwordString.substring(0,passwordLength);      // added a substring method to truncate the value returned by the for loop
 };
 
 // Callback Functions
+// this function returns the special characters based on user's selection.
 function getSpecial(){
   var special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
   return special[Math.floor(Math.random() * special.length)];
 };
 
+// this function returns numeric characters based on user's selection.
 function getNumeric(){
   var number = "0123456789";
   return number[Math.floor(Math.random() * number.length)];
 };
 
+// this function returns lowercase characters based on user's selection.
 function getLower(){
   var lower = "abcdefghijklmnopqrstuvwxyz";
   return lower[Math.floor(Math.random() * lower.length)];
 };
 
+// this function returns uppercase characters based on user's selection.
 function getUpper(){
   var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return upper[Math.floor(Math.random() * upper.length)];
